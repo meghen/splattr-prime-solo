@@ -8,7 +8,8 @@ import React from 'react';
 const InfoPage = () => (
   <div>
     <p>
-      Info Page
+      Info Page --- This will change eventually, but I'm going to store credits here for the time being
+      "Haunted house icon made by wanicon at www.flaticon.com"
     </p>
   </div>
 );
