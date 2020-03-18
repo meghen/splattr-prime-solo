@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 const Nav = (props) => (
@@ -21,28 +21,28 @@ const Nav = (props) => (
       {props.user.id && (
         <>
           <Link className="nav-link" to="/home">
-            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/2286/2286890.svg"/>
+            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/2286/2286890.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
             Home
           </Link>
           <Link className="nav-link" to="/info">
-          <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1308/1308359.svg"/>
+          <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1308/1308359.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
             Settings
           </Link>
           <Link className="nav-link" to="/lists">
-            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1750/1750050.svg"/>
+            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1750/1750050.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
             Lists
           </Link>
           <Link className="nav-link" to="/search">
-            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/2286/2286880.svg"/>
+            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/2286/2286880.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
             Search
           </Link>
           <Link className="nav-link" to="/add-movie">
             {/* <img className="nav-icons" src=""/>  */}
-            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1225/1225514.svg"/>
+            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1225/1225514.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
             Add Movie
           </Link>

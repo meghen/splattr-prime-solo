@@ -1,0 +1,11 @@
+.moviesList {
+    background-color: white;
+    margin: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    display: flex;
+  }
+  
+  .moviesListInner {
+      flex: 50%;
+  }
