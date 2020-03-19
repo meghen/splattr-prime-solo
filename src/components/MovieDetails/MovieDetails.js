@@ -5,12 +5,15 @@ class MovieDetails extends Component {
     state = {
         movieId: 0,
         movieNotes: '',
+        rating: 0,
+        userId: 0,
         noteTextarea: true
     }
     componentDidMount(){
         const pathnameParts = this.props.history.location.pathname.split('details/')
         const movieId = pathnameParts[1]
-        this.setState({movieId: movieId})
+        this.setState({movieId: movieId}) 
+        this.setState({userId: this.props.reduxState.user.id})
     }
     handleChange=(event)=>{
         console.log('in handlechange', event.target.value);
@@ -18,7 +21,7 @@ class MovieDetails extends Component {
     }
     saveNotes=()=>{
         this.setState({noteTextarea: !this.state.noteTextarea})
-        this.props.dispatch({type: 'SET_MOVIES', payload: this.state.movieNotes})
+        this.props.dispatch({type: 'SET_MOVIES', payload: this.state})
     }
     seeAllMovies=()=>{
         this.props.history.push(`/#/home`)
