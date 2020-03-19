@@ -4,7 +4,16 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/', (req,res) =>{
+    console.log('in Notes GET checking req.body', req.body.notes);
     
+    let queryString = `SELECT "notes" FROM "user-review" WHERE "user_id" = $1 AND "movie_id" =$2;`
+    pool.query(queryString, [req.body.notes.userId, req.body.notes.movieId]).then((results) => {
+            console.log('in notes GET: ', results.rows); 
+            res.sendStatus(200);
+        }).catch((err) => {
+            console.log(err);
+            res.sendStatus(500);
+        })
 });
 
 router.post('/', (req, res) => {

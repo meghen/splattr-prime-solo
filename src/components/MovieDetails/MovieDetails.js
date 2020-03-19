@@ -7,13 +7,17 @@ class MovieDetails extends Component {
         movieNotes: '',
         rating: 0,
         userId: 0,
-        noteTextarea: true
+        noteTextarea: false
     }
     componentDidMount(){
         const pathnameParts = this.props.history.location.pathname.split('details/')
         const movieId = pathnameParts[1]
         this.setState({movieId: movieId}) 
         this.setState({userId: this.props.reduxState.user.id})
+        this.getNotes();
+    }
+    getNotes=()=>{
+        this.props.dispatch({type:'FETCH_NOTES', payload: this.state})
     }
     handleChange=(event)=>{
         console.log('in handlechange', event.target.value);
@@ -43,11 +47,11 @@ class MovieDetails extends Component {
                                 <b>Notes: </b><br/>
                                 {this.state.noteTextarea ?
                                     <>
-                                        <textarea onChange={this.handleChange}>{this.state.movieNotes}</textarea>
+                                        <textarea onChange={this.handleChange}>{this.props.reduxState.getNotes}</textarea>
                                         <button onClick={this.saveNotes}>Save</button>
                                     </> :
                                     <>
-                                        <p>{this.state.movieNotes}</p>
+                                        <p>{this.props.reduxState.getNotes}</p>
                                         <button onClick={this.saveNotes}>Edit</button>
                                     </>
                                 }
