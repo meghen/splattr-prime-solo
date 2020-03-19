@@ -8,11 +8,16 @@ function* getMovies(action) {
     //   withCredentials: true,
     // };
 
-    const response = yield axios.get('/api/movies');
-    yield console.log('response.data', response.data.results);
-    
+    const response = yield axios.get('/api/movies');    
     yield put({ type: 'GET_MOVIES', payload: response.data.results });
 
+  } catch (error) {
+    console.log('Error with user logout:', error);
+  }
+}
+function* postNotes(action) {
+  try {
+    yield axios.post('/notes', {notes: action.payload})
   } catch (error) {
     console.log('Error with user logout:', error);
   }
@@ -20,6 +25,7 @@ function* getMovies(action) {
 
 function* homePageSaga() {
   yield takeLatest('FETCH_MOVIES', getMovies);
+  yield takeLatest('SET_MOVIES', postNotes)
 }
 
 export default homePageSaga;

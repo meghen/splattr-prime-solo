@@ -41,6 +41,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  box-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
 }
 
 .nav-icons {

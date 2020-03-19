@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import Lists from '../Lists/Lists';
 import AddMovie from '../AddMovie/AddMovie'
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 import './App.css';
 
@@ -72,6 +73,10 @@ class App extends Component {
               exact
               path="/add-movie"
               component={AddMovie}
+            />
+            <ProtectedRoute
+              path="/details"
+              component={MovieDetails}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

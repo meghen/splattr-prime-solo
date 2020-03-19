@@ -1,0 +1,24 @@
+.movieDetailCard {
+    background-color: black;
+    color: #b8b8b8;
+    height: 667px;
+    margin-bottom: 109px;
+}
+.movieDetailCard h3 {
+    color: white;
+    text-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
+}
+.movieDetailCard img, textarea {
+    width: 100%;
+}
+.movieDetailCard h3, p {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.movieDetailCard button {
+    background-color: #4bb392;
+    box-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: bold;
+}

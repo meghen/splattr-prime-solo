@@ -1,11 +1,24 @@
 .moviesList {
-    background-color: white;
+    background-color: black;
     margin: 1%;
     padding-top: 3%;
     padding-bottom: 3%;
     display: flex;
-  }
+}
   
-  .moviesListInner {
-      flex: 50%;
-  }
+.moviesListInner {
+    flex: 40%;
+    padding: 5px;
+    color: #b8b8b8;
+    height: 278px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.moviesListInner b {
+    color: white;
+}
+.welcome h2 {
+    text-align: center;
+}
