@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import './UserPage.css';
 class UserPage extends Component {
   state = {
-    movie: []
+    movie: [],
+    list: ''
   }
   closeModal=()=>{
     let modal = document.getElementById("myModal");
@@ -21,11 +22,14 @@ class UserPage extends Component {
     this.props.history.push(`/details/${movie.id}`)
   }
   saveToList=()=>{
-    console.log('in SaveToList');
+    /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
     let modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
-  selectList=()=>{
+  selectList=(event)=>{    
+    this.setState({list: event.target.value})
+  }
+  showSelectList=()=>{
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
   }
@@ -41,7 +45,7 @@ class UserPage extends Component {
                       <br></br>
                       {movie.overview}
                       <br></br>
-                      <button onClick={this.selectList}>Add To List</button>
+                      <button onClick={this.showSelectList}>Add To List</button>
                       <button onClick={()=>this.getInfo(movie)}>More</button>
                       </div>
                   </div>)}
@@ -51,10 +55,10 @@ class UserPage extends Component {
                     <div className="modal-content">
                       <span onClick={this.closeModal} className="close">&times;</span>
                       <p>Select List: </p>
-                      <select>
-                        <option>Creature Feature</option>
-                        <option>Favs</option>
-                        <option>Recommendations I won't look at</option>
+                      <select onChange={this.selectList}>
+                        <option value="creatureFeature">Creature Feature</option>
+                        <option value="favs">Favs</option>
+                        <option value="recs">Recommendations I won't look at</option>
                       </select>
                       <button onClick={this.saveToList}>Save</button>
                     </div>
