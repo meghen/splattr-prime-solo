@@ -20,6 +20,11 @@ class UserPage extends Component {
     //routes to movies details page, passing movie's id in as url router
     this.props.history.push(`/details/${movie.id}`)
   }
+  saveToList=()=>{
+    console.log('in SaveToList');
+    let modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
   selectList=()=>{
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
@@ -45,7 +50,13 @@ class UserPage extends Component {
                   <div id="myModal" className="modal">
                     <div className="modal-content">
                       <span onClick={this.closeModal} className="close">&times;</span>
-                      <p>Some text in the Modal..</p>
+                      <p>Select List: </p>
+                      <select>
+                        <option>Creature Feature</option>
+                        <option>Favs</option>
+                        <option>Recommendations I won't look at</option>
+                      </select>
+                      <button onClick={this.saveToList}>Save</button>
                     </div>
                   </div>
               {/* <p>Your ID is: {props.user.id}</p> */}
