@@ -17,8 +17,12 @@ function* getMovies(action) {
 }
 function* fetchNotes(action) {
   try {
-    const response = yield axios.get('/notes', {notes: action.payload});    
-    yield put({ type: 'GET_NOTES', payload: response.data.results }); 
+    yield console.log('in fetchNotes', action.payload);
+    
+    const response = yield axios.get(`/notes/${action.payload}`); 
+    yield console.log('after get we have ', response.data);
+       
+    yield put({ type: 'GET_NOTES', payload: response.data }); 
   } catch (error) {
     console.log('Error with user logout:', error);
   }

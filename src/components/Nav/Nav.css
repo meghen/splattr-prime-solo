@@ -24,7 +24,8 @@
   padding: 24px 12.8px;
   text-decoration: none;
   font-size: 15px;
-  text-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
+  /* text-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8; */
+  text-shadow: 0 0 10px mediumspringgreen;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -41,7 +42,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  box-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
+  /* box-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8; */
+  box-shadow: 0 0 10px mediumspringgreen;
 }
 
 .nav-icons {

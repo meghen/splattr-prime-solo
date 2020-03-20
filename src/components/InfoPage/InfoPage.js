@@ -9,6 +9,7 @@ class InfoPage extends Component {
     <p>
       Info Page --- This will change eventually, but I'm going to store credits here for the time being
       "Haunted house icon made by wanicon at www.flaticon.com"
+      Background image by JR Korpa on Unsplash.com (https://unsplash.com/photos/7NoLliK6ntc)
       <LogOutButton className="log-in" />
     </p>
   </div>

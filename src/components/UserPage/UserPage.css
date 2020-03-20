@@ -21,4 +21,6 @@
 }
 .welcome h2 {
     text-align: center;
+    color: white;
+    text-shadow: 0 0 20px purple;
 }

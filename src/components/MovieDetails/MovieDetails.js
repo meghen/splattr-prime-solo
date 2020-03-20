@@ -17,7 +17,9 @@ class MovieDetails extends Component {
         this.getNotes();
     }
     getNotes=()=>{
-        this.props.dispatch({type:'FETCH_NOTES', payload: this.state})
+        // console.log(' checkign state', this.props.reduxState.user.id);
+        
+        this.props.dispatch({type:'FETCH_NOTES', payload: this.props.reduxState.user.id})
     }
     handleChange=(event)=>{
         console.log('in handlechange', event.target.value);
@@ -47,11 +49,11 @@ class MovieDetails extends Component {
                                 <b>Notes: </b><br/>
                                 {this.state.noteTextarea ?
                                     <>
-                                        <textarea onChange={this.handleChange}>{this.props.reduxState.getNotes}</textarea>
+                                        <textarea onChange={this.handleChange}>{this.props.reduxState.gotNotes}</textarea>
                                         <button onClick={this.saveNotes}>Save</button>
                                     </> :
                                     <>
-                                        <p>{this.props.reduxState.getNotes}</p>
+                                        {this.props.reduxState.gotNotes}
                                         <button onClick={this.saveNotes}>Edit</button>
                                     </>
                                 }

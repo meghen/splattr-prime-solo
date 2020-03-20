@@ -1,7 +1,7 @@
-const getNotes = (state = '', action) => {
+const gotNotes = (state = '', action) => {
     switch (action.type) {
       case 'GET_NOTES':
-        return action.payload;
+        return 'hi this is test data';
       default:
         return state;
     }
@@ -9,4 +9,4 @@ const getNotes = (state = '', action) => {
 
 // getNotes will be on the redux state at:
 // state.getNotes
-  export default getNotes;
+  export default gotNotes;
