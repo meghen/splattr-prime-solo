@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
-import homepage from './homePageReducer'
-import gotNotes from './movieNotesReducer'
+import homepage from './homePageReducer';
+import gotNotes from './movieNotesReducer';
+import searchResults from './searchPageReducer';
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -15,7 +17,8 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   homepage, // will grab all horror/thriller movies for home directory after log in
-  gotNotes
+  gotNotes,
+  searchResults
 });
 
 export default rootReducer;

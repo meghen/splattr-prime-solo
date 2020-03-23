@@ -13,8 +13,9 @@ router.get('/', (req,res) =>{
     })
 });
 
-router.get('/search', (req,res) =>{    
-    axios.get(`https://api.themoviedb.org/3/search/company?api_key=${process.env.TMDB_API_KEY}&page=1`)
+router.get('/search/:searchTerm', (req,res) =>{   
+    // console.log('in router checking req.params: ', req.params.searchTerm);    
+    axios.get(`https://api.themoviedb.org/3/search/movie?with_genres=27,53&api_key=${process.env.TMDB_API_KEY}&query=${req.params.searchTerm}&page=1`)
     .then((response) => {
         res.send(response.data)
     }).catch ((error) => {

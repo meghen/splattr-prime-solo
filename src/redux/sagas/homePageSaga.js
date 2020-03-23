@@ -39,11 +39,20 @@ function* setList(action) {
   yield console.log('hey fam we made it to SetList SAGA ', action.payload);
   yield axios.post('/collections', {list: action.payload})
 }
+function* findMovies(action) {
+  try {    
+    const response = yield axios.get(`/api/movies/search/${action.payload}`);    
+    yield put({ type: 'GET_SEARCH_RESULTS', payload: response.data.results });
+  } catch (error) {
+    console.log('Error with user logout:', error);
+  }
+}
 function* homePageSaga() {
   yield takeLatest('FETCH_MOVIES', getMovies);
-  yield takeLatest('SET_MOVIES', postNotes)
-  yield takeLatest('FETCH_NOTES', fetchNotes)
-  yield takeLatest('SET_LIST', setList)
+  yield takeLatest('SET_MOVIES', postNotes);
+  yield takeLatest('FETCH_NOTES', fetchNotes);
+  yield takeLatest('SET_LIST', setList);
+  yield takeLatest('SEARCH_MOVIES', findMovies)
 }
 
 export default homePageSaga;
