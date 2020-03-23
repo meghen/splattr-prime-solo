@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* getMovies(action) {
@@ -37,7 +37,7 @@ function* fetchNotes(action) {
 }
 function* setList(action) {
   yield console.log('hey fam we made it to SetList SAGA ', action.payload);
-  yield axios.post('/collections', {list: action.payload})
+  yield axios.post('/collections', {data: action.payload})
 }
 function* findMovies(action) {
   try {    
@@ -48,11 +48,11 @@ function* findMovies(action) {
   }
 }
 function* homePageSaga() {
-  yield takeLatest('FETCH_MOVIES', getMovies);
-  yield takeLatest('SET_MOVIES', postNotes);
-  yield takeLatest('FETCH_NOTES', fetchNotes);
-  yield takeLatest('SET_LIST', setList);
-  yield takeLatest('SEARCH_MOVIES', findMovies)
+  yield takeEvery('FETCH_MOVIES', getMovies);
+  yield takeEvery('SET_MOVIES', postNotes);
+  yield takeEvery('FETCH_NOTES', fetchNotes);
+  yield takeEvery('SET_LIST', setList);
+  yield takeEvery('SEARCH_MOVIES', findMovies)
 }
 
 export default homePageSaga;

@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import React, {Component} from 'react';
 import './UserPage.css';
+
 class UserPage extends Component {
   state = {
-    movie: [],
-    list: ''
+    movie: 0,
+    list: 0
   }
   closeModal=()=>{
     let modal = document.getElementById("myModal");
@@ -22,15 +23,15 @@ class UserPage extends Component {
     this.props.history.push(`/details/${movie.id}`)
   }
   saveToList=()=>{
-    /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
-    this.props.dispatch({type: 'SET_LIST', payload: this.state.list})
+    this.props.dispatch({type: 'SET_LIST', payload: this.state})
     let modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
   selectList=(event)=>{    
     this.setState({list: event.target.value})
   }
-  showSelectList=()=>{
+  showSelectList=(movie)=>{
+    this.setState({movie: movie.id})
     let modal = document.getElementById("myModal");
     modal.style.display = "block";
   }
@@ -46,25 +47,22 @@ class UserPage extends Component {
                       <br></br>
                       <div className="overview">{movie.overview}</div>
                       <br></br>
-                      <button onClick={this.showSelectList}>Add To List</button>
+                      <button onClick={()=>this.showSelectList(movie)}>Add To List</button>
                       <button onClick={()=>this.getInfo(movie)}>More</button>
                       </div>
                   </div>)}
-
-                  {/* testing modal below */}
                   <div id="myModal" className="modal">
                     <div className="modal-content">
                       <span onClick={this.closeModal} className="close">&times;</span>
                       <p>Select List: </p>
                       <select onChange={this.selectList}>
-                        <option value="creatureFeature">Creature Feature</option>
-                        <option value="favs">Favs</option>
-                        <option value="recs">Recommendations I won't look at</option>
+                        <option value="3">Creature Feature</option>
+                        <option value="2">Favs</option>
+                        <option value="4">Recommendations I won't look at</option>
                       </select>
                       <button onClick={this.saveToList}>Save</button>
                     </div>
                   </div>
-              {/* <p>Your ID is: {props.user.id}</p> */}
             </div>
         )
     }

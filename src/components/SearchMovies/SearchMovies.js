@@ -1,9 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import '../UserPage/UserPage.css'
 
 class SearchMovies extends Component {
     state = {
         searchQuery: ''
+    }
+    saveToList=()=>{
+      /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
+      this.props.dispatch({type: 'SET_LIST', payload: this.state.list})
+      let modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+    selectList=(event)=>{    
+      this.setState({list: event.target.value})
+    }
+    showSelectList=()=>{
+      let modal = document.getElementById("myModal");
+      modal.style.display = "block";
+    }
+    getInfo=(movie)=>{        
+        //routes to movies details page, passing movie's id in as url router
+        this.props.history.push(`/details/${movie.id}`)
     }
     handleChange=(event)=>{
         this.setState({searchQuery: event.target.value})
@@ -23,7 +41,7 @@ class SearchMovies extends Component {
                     <div className="moviesListInner">
                       <b>{movie.title}</b> 
                       <br></br>
-                      {movie.overview}
+                      <div className="overview">{movie.overview}</div>
                       <br></br>
                       <button onClick={this.showSelectList}>Add To List</button>
                       <button onClick={()=>this.getInfo(movie)}>More</button>

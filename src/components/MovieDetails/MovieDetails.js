@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './MovieDetails.css'
+import './MovieDetails.css';
+
 class MovieDetails extends Component {
     state = {
         movieId: 0,
@@ -8,6 +9,11 @@ class MovieDetails extends Component {
         rating: 0,
         userId: 0,
         noteTextarea: false
+    }
+    closeModal=()=>{
+        let modal = document.getElementById("myModal");
+        // let span = document.getElementsByClassName("close")[0];
+        modal.style.display = "none";
     }
     componentDidMount(){
         const pathnameParts = this.props.history.location.pathname.split('details/')
@@ -31,6 +37,19 @@ class MovieDetails extends Component {
     }
     seeAllMovies=()=>{
         this.props.history.push(`/#/home`)
+    }
+    saveToList=()=>{
+        /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
+        this.props.dispatch({type: 'SET_LIST', payload: this.state.list})
+        let modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+    selectList=(event)=>{    
+    this.setState({list: event.target.value})
+    }
+    showSelectList=()=>{
+    let modal = document.getElementById("myModal");
+    modal.style.display = "block";
     }
     render() {
         return (
@@ -58,6 +77,19 @@ class MovieDetails extends Component {
                                     </>
                                 }
                             </p>
+                            <div id="myModal" className="modal">
+                                <div className="modal-content">
+                                <span onClick={this.closeModal} className="close">&times;</span>
+                                <p>Select List: </p>
+                                <select onChange={this.selectList}>
+                                    <option value="creatureFeature">Creature Feature</option>
+                                    <option value="favs">Favs</option>
+                                    <option value="recs">Recommendations I won't look at</option>
+                                </select>
+                                <button onClick={this.saveToList}>Save</button>
+                                </div>
+                            </div>
+                            <button onClick={this.showSelectList}>Add To List</button>
                             <button onClick={this.seeAllMovies}>Back To All Movies</button>
                         </div>
                         </>
