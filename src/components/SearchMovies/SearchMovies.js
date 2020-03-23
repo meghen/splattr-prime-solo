@@ -13,11 +13,10 @@ class SearchMovies extends Component {
     }
     render() {
         return (
-            <div className=''>
+            <div className='searchPage'>
                 <h1>Search</h1>
                 <input placeholder="Movie Name" onChange={this.handleChange}></input>
                 <button onClick={this.searchMovies}>Search</button>
-                {/* <p>{JSON.stringify(this.props.reduxState.searchResults)}</p> */}
                 {this.props.reduxState.searchResults.map(movie => 
                   <div className="moviesList" key={movie.id}>
                     <div className="moviesListInner"><img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt="Movie Poster"/></div>
@@ -30,6 +29,9 @@ class SearchMovies extends Component {
                       <button onClick={()=>this.getInfo(movie)}>More</button>
                       </div>
                   </div>)}
+                  <br/>
+                  <button className="pageBtn">Previous Page</button>
+                  <button className="pageBtn">Next Page</button>
             </div>
         )
     }

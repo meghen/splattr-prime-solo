@@ -44,7 +44,7 @@ class UserPage extends Component {
                     <div className="moviesListInner">
                       <b>{movie.title}</b> 
                       <br></br>
-                      {movie.overview}
+                      <div className="overview">{movie.overview}</div>
                       <br></br>
                       <button onClick={this.showSelectList}>Add To List</button>
                       <button onClick={()=>this.getInfo(movie)}>More</button>

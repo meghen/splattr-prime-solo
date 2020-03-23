@@ -27,8 +27,8 @@
 button {
     background-color: #4bb392;
     box-shadow: 0 0 10px #f70f4d, 0 0 5px #9b32a8;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     font-weight: bold;
 }
 
@@ -68,4 +68,14 @@ button {
 .modal-content select {
     border-color: black;
     background-color: #38866e;
+}
+
+.searchPage {
+    text-align: center;
+}
+.overview {
+    width: 160px;
+    height: 175px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
