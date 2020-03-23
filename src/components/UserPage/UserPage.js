@@ -8,7 +8,7 @@ class UserPage extends Component {
   }
   closeModal=()=>{
     let modal = document.getElementById("myModal");
-    let span = document.getElementsByClassName("close")[0];
+    // let span = document.getElementsByClassName("close")[0];
     modal.style.display = "none";
   }
   componentDidMount(){
@@ -23,6 +23,7 @@ class UserPage extends Component {
   }
   saveToList=()=>{
     /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
+    this.props.dispatch({type: 'SET_LIST', payload: this.state.list})
     let modal = document.getElementById("myModal");
     modal.style.display = "none";
   }

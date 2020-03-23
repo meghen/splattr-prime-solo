@@ -13,6 +13,16 @@ router.get('/', (req,res) =>{
     })
 });
 
+router.get('/search', (req,res) =>{    
+    axios.get(`https://api.themoviedb.org/3/search/company?api_key=${process.env.TMDB_API_KEY}&page=1`)
+    .then((response) => {
+        res.send(response.data)
+    }).catch ((error) => {
+        console.log('server error', error);
+        res.sendStatus(500);
+    })
+});
+
 /**
  * POST route template
  */

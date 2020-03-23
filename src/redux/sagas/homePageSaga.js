@@ -15,6 +15,14 @@ function* getMovies(action) {
     console.log('Error with user logout:', error);
   }
 }
+function* postNotes(action) {
+  try {
+    yield axios.post('/notes', {notes: action.payload});
+    yield put({type: 'FETCH_NOTES'})
+  } catch (error) {
+    console.log('Error with user logout:', error);
+  }
+}
 function* fetchNotes(action) {
   try {
     yield console.log('in fetchNotes', action.payload);
@@ -27,19 +35,15 @@ function* fetchNotes(action) {
     console.log('Error with user logout:', error);
   }
 }
-function* postNotes(action) {
-  try {
-    yield axios.post('/notes', {notes: action.payload});
-    yield put({type: 'FETCH_NOTES'})
-  } catch (error) {
-    console.log('Error with user logout:', error);
-  }
+function* setList(action) {
+  yield console.log('hey fam we made it to SetList SAGA ', action.payload);
+  yield axios.post('/collections', {list: action.payload})
 }
-
 function* homePageSaga() {
   yield takeLatest('FETCH_MOVIES', getMovies);
   yield takeLatest('SET_MOVIES', postNotes)
   yield takeLatest('FETCH_NOTES', fetchNotes)
+  yield takeLatest('SET_LIST', setList)
 }
 
 export default homePageSaga;

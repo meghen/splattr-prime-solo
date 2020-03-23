@@ -40,12 +40,12 @@ const Nav = (props) => (
             <br></br>
             Search
           </Link>
-          <Link className="nav-link" to="/add-movie">
+          {/* <Link className="nav-link" to="/add-movie">
             {/* <img className="nav-icons" src=""/>  */}
-            <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1225/1225514.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
+            {/* <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1225/1225514.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
-            Add Movie
-          </Link>
+            Add Movie */}
+          {/* </Link> */}
           {/* <LogOutButton className="nav-link"/> */}
         </>
       )}
