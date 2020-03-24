@@ -21,11 +21,15 @@ router.post('/outer', (req,res)=>{
     })
 })
 router.get('/outer', (req,res)=>{
+    console.log('in List OUTER with req ', req.session.passport.user);
+    
     let queryString = `SELECT "list_title","user_lists"."id" FROM "user_lists"
     JOIN "movie_list" ON "movie_list"."list_id" = "user_lists"."id"
+    JOIN "user" ON "user"."id" = "user_lists"."user_id"
+    WHERE "user"."id" = $1
     GROUP BY "list_title", "user_lists"."id";`
-    pool.query(queryString).then((results) => {
-        console.log('what is results.rows here? ', results.rows);
+    pool.query(queryString, req.session.passport.user).then((results) => {
+        // console.log('what is results.rows here? ', results.rows);
         res.send(results.rows);
     }).catch((err) => {
         console.log(err);
