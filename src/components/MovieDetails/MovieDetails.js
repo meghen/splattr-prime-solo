@@ -24,7 +24,6 @@ class MovieDetails extends Component {
     }
     getNotes=()=>{
         // console.log(' checkign state', this.props.reduxState.user.id);
-        
         this.props.dispatch({type:'FETCH_NOTES', payload: this.props.reduxState.user.id})
     }
     handleChange=(event)=>{
