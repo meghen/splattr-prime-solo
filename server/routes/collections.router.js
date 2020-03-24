@@ -11,6 +11,15 @@ router.post('/', (req,res)=>{
         res.sendStatus(500);
     })
 })
+router.post('/outer', (req,res)=>{      
+    let queryString = `INSERT INTO "user_lists" ("list_title") VALUES $1;`;
+    pool.query(queryString, [req.body.newListTitle]).then((results) => {        
+        res.sendStatus(201);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
 router.get('/outer', (req,res)=>{
     let queryString = `SELECT "list_title","user_lists"."id" FROM "user_lists"
     JOIN "movie_list" ON "movie_list"."list_id" = "user_lists"."id"

@@ -21,10 +21,6 @@ class Lists extends Component {
     deleteList=(title)=>{        
         this.props.dispatch({type: 'DELETE_LIST', payload: title.id})
     }
-    updateTitle=()=>{
-        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: this.state.title})
-        this.setState({titleEdit: !this.state.titleEdit})
-    }
     getLists=()=>{
         this.props.dispatch({type: 'GET_LIST_TITLES'})
     }
@@ -36,14 +32,21 @@ class Lists extends Component {
         modal.style.display = "none";
         this.props.dispatch({type: 'CREATE_NEW_LIST', payload: this.state.title})
     }
+    showListInner=()=>{
+        console.log('in list inner!'); 
+    }
     toggleTitle=()=>{
+        this.setState({titleEdit: !this.state.titleEdit})
+    }
+    updateTitle=()=>{
+        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: this.state.title})
         this.setState({titleEdit: !this.state.titleEdit})
     }
     render() {
         return (
             <div className='lists'>
                 <h2>List page</h2>
-                <button onClick={this.createList}>New List</button>
+                <button onClick={this.createList} className="newListBtn">New List</button>
                 <div>
                     {this.props.reduxState.collections.map(listTitle => 
                         <div className="listDisplay">
@@ -58,9 +61,9 @@ class Lists extends Component {
                             <>
                                 {/* change button styling for list title so it doesn't LOOK like a button */}
                                 <span className="listResults">
-                                    <button>{listTitle.list_title}</button>
-                                    <button onClick={this.toggleTitle}>Edit Title</button>
-                                    <button onClick={()=>this.deleteList(listTitle)}>Delete List</button>
+                                    <button onClick={this.showListInner} className="listTitleButton">{listTitle.list_title}</button>
+                                    <button onClick={this.toggleTitle}>Edit</button>
+                                    <button onClick={()=>this.deleteList(listTitle)}>Delete</button>
                                 </span>
                             </>} 
                             <div id="myModal" className="modal">

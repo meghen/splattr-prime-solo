@@ -12,3 +12,15 @@
 .listResults input {
     margin: 0
 }
+.listTitleButton {
+    border: none;
+    color: white;
+    background-color: black;
+    box-shadow: none;
+    font-size: x-large;
+}
+
+.newListBtn {
+    width: 95%;
+    height: 30px;
+}

@@ -15,12 +15,15 @@ function* deleteList(action) {
 function* updateListName(action) {
   yield axios.put(`/collections/${action.payload}`)  
 }
-
+function* createNewList(action) {  
+  yield axios.post('/collections/outer', {newListTitle: action.payload})
+}
 function* listSaga() {
   yield takeEvery('SET_LIST', setList);
   yield takeEvery('GET_LIST_TITLES', getListTitles)
   yield takeEvery('DELETE_LIST', deleteList)
   yield takeEvery ('PUT_LIST_TITLE', updateListName)
+  yield takeEvery('CREATE_NEW_LIST', createNewList)
 }
 
 export default listSaga;
