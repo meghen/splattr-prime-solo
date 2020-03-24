@@ -35,14 +35,10 @@ function* fetchNotes(action) {
     console.log('Error with user logout:', error);
   }
 }
-function* setList(action) {
-  yield console.log('hey fam we made it to SetList SAGA ', action.payload);
-  yield axios.post('/collections', {data: action.payload})
-}
 function* findMovies(action) {
   try {    
     const response = yield axios.get(`/api/movies/search/${action.payload}`);    
-    yield put({ type: 'GET_SEARCH_RESULTS', payload: response.data.results });
+    yield put({ type: 'GET_SEARCH_RESULTS', payload: response.data.results });    
   } catch (error) {
     console.log('Error with user logout:', error);
   }
@@ -51,8 +47,7 @@ function* homePageSaga() {
   yield takeEvery('FETCH_MOVIES', getMovies);
   yield takeEvery('SET_MOVIES', postNotes);
   yield takeEvery('FETCH_NOTES', fetchNotes);
-  yield takeEvery('SET_LIST', setList);
-  yield takeEvery('SEARCH_MOVIES', findMovies)
+  yield takeEvery('SEARCH_MOVIES', findMovies);
 }
 
 export default homePageSaga;

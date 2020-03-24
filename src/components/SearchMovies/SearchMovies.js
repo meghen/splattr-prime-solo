@@ -32,7 +32,7 @@ class SearchMovies extends Component {
     render() {
         return (
             <div className='searchPage'>
-                <h1>Search</h1>
+                <h2>Search</h2>
                 <input placeholder="Movie Name" onChange={this.handleChange}></input>
                 <button onClick={this.searchMovies}>Search</button>
                 {this.props.reduxState.searchResults.map(movie => 
