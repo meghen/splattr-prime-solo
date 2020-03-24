@@ -1,0 +1,14 @@
+.listResults {
+    display: flex;
+    margin: 2.5%;
+    color: white;
+    background-color: black;
+    padding: 15px;
+}
+.listDisplay h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.listResults input {
+    margin: 0
+}
