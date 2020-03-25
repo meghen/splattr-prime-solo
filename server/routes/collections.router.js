@@ -12,8 +12,8 @@ router.post('/', (req,res)=>{
     })
 })
 router.post('/outer', (req,res)=>{      
-    let queryString = `INSERT INTO "user_lists" ("list_title") VALUES $1;`;
-    pool.query(queryString, [req.body.newListTitle]).then((results) => {        
+    let queryString = `INSERT INTO "user_lists" ("list_title", "user_id") VALUES $1, $2;`;
+    pool.query(queryString, [req.body.newListTitle, req.session.passport.user]).then((results) => {        
         res.sendStatus(201);
     }).catch((err) => {
         console.log(err);
