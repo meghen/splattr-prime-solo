@@ -104,9 +104,9 @@ class MovieDetails extends Component {
                                 <span onClick={this.closeModal} className="close">&times;</span>
                                 <p>Select List: </p>
                                 <select onChange={this.selectList}>
-                                    <option value="creatureFeature">Creature Feature</option>
-                                    <option value="favs">Favs</option>
-                                    <option value="recs">Recommendations I won't look at</option>
+                                    {this.props.reduxState.collections.map(listOption =>
+                                    <option value={listOption.id}>{listOption.list_title}</option>
+                                    )}
                                 </select>
                                 <button onClick={this.saveToList}>Save</button>
                                 </div>

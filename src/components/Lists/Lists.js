@@ -11,9 +11,9 @@ class Lists extends Component {
         let modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
-    componentDidMount(){
-        this.getLists();
-    }
+    // componentDidMount(){
+    //     this.getLists();
+    // }
     createList=()=>{
         let modal = document.getElementById("myModal");
         modal.style.display = "block";
@@ -21,9 +21,9 @@ class Lists extends Component {
     deleteList=(title)=>{        
         this.props.dispatch({type: 'DELETE_LIST', payload: title.id})
     }
-    getLists=()=>{
-        this.props.dispatch({type: 'GET_LIST_TITLES'})
-    }
+    // getLists=()=>{
+    //     this.props.dispatch({type: 'GET_LIST_TITLES'})
+    // }
     handleChange=(event)=>{
         this.setState({title: event.target.value})
     }
@@ -67,13 +67,13 @@ class Lists extends Component {
                                 </span>
                             </>} 
                             <div id="myModal" className="modal">
-                    <div className="modal-content">
-                      <span onClick={this.closeModal} className="close">&times;</span>
-                      <label> Title:
-                          <input onChange={this.handleChange}></input></label>                      
-                      <button onClick={this.saveNewList}>Save</button>
-                    </div>
-                  </div>
+                                <div className="modal-content">
+                                <span onClick={this.closeModal} className="close">&times;</span>
+                                <label> Title:
+                                    <input onChange={this.handleChange}></input></label>                      
+                                <button onClick={this.saveNewList}>Save</button>
+                                </div>
+                            </div>
                         </div>)}
                 </div>
             </div>

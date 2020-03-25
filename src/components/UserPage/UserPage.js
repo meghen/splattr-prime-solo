@@ -56,10 +56,10 @@ class UserPage extends Component {
                       <span onClick={this.closeModal} className="close">&times;</span>
                       <p>Select List: </p>
                       <select onChange={this.selectList}>
-                        <option value="3">Creature Feature</option>
-                        <option value="2">Favs</option>
-                        <option value="4">Recommendations I won't look at</option>
-                      </select>
+                        {this.props.reduxState.collections.map(listOption =>
+                          <option value={listOption.id}>{listOption.list_title}</option>
+                        )}
+                      </select> 
                       <button onClick={this.saveToList}>Save</button>
                     </div>
                   </div>

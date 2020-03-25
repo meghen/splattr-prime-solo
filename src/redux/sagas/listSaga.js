@@ -6,7 +6,7 @@ function* setList(action) {
   yield axios.post('/collections', {data: action.payload})
   // yield put({type: 'GET_LIST_TITLES'})
   } catch (error) {
-    console.log('Error with user logout:', error);
+    console.log(error);
   }
 }
 function* getListTitles() {
@@ -14,28 +14,28 @@ function* getListTitles() {
     const response = yield axios.get('/collections/outer')    
     yield put({type: 'SET_COLLECTION', payload: response.data})
   } catch (error) {
-    console.log('Error with user logout:', error);
+    console.log(error);
   }
 }
 function* deleteList(action) {
-  try {
-  yield axios.delete(`/collections/${action.payload}`) 
+  try {    
+    yield axios.delete(`/collections/outer/${action.payload}`) 
   } catch (error) {
-    console.log('Error with user logout:', error);
+    console.log(error);
   } 
 }
 function* updateListName(action) {
   try {
   yield axios.put(`/collections/${action.payload}`)  
   } catch (error) {
-    console.log('Error with user logout:', error);
+    console.log(error);
   }
 }
 function* createNewList(action) {  
   try {
   yield axios.post('/collections/outer', {newListTitle: action.payload})
   } catch (error) {
-    console.log('Error with user logout:', error);
+    console.log(error);
   }
 }
 function* listSaga() {
