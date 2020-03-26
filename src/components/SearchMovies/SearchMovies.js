@@ -15,7 +15,11 @@ class SearchMovies extends Component {
     }
     getInfo=(movie)=>{        
       //routes to movies details page, passing movie's id in as url router
-      this.props.history.push(`/details/${movie.id}`)
+      console.log('what even is this.props.history?SEARCH PAGE ',this.props.history);
+      this.props.history.push({
+        pathname: `/details/${movie.id}`,
+        state: {movie: movie}
+      })
     }
     handleChange=(event)=>{
       this.setState({searchQuery: event.target.value})
@@ -61,7 +65,7 @@ class SearchMovies extends Component {
                       <p>Select List: </p>
                       <select onChange={this.selectList}>
                         {this.props.reduxState.collections.map(listOption =>
-                          <option value={listOption.id}>{listOption.list_title}</option>
+                          <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                         )}
                       </select>
                       <button onClick={this.saveToList}>Save</button>

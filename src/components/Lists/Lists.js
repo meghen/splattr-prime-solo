@@ -11,9 +11,6 @@ class Lists extends Component {
         let modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
-    // componentDidMount(){
-    //     this.getLists();
-    // }
     createList=()=>{
         let modal = document.getElementById("myModal");
         modal.style.display = "block";
@@ -21,9 +18,6 @@ class Lists extends Component {
     deleteList=(title)=>{        
         this.props.dispatch({type: 'DELETE_LIST', payload: title.id})
     }
-    // getLists=()=>{
-    //     this.props.dispatch({type: 'GET_LIST_TITLES'})
-    // }
     handleChange=(event)=>{
         this.setState({title: event.target.value})
     }
@@ -49,7 +43,7 @@ class Lists extends Component {
                 <button onClick={this.createList} className="newListBtn">New List</button>
                 <div>
                     {this.props.reduxState.collections.map(listTitle => 
-                        <div className="listDisplay">
+                        <div key={listTitle.id} className="listDisplay">
                             {this.state.titleEdit ? 
                             <>
                                 <span className="listResults">

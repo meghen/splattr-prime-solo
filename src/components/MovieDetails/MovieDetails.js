@@ -6,8 +6,6 @@ class MovieDetails extends Component {
     state = {
         movieId: 0,
         movieNotes: '',
-        rating: 0,
-        userId: 0,
         noteTextarea: false,
         firstNote: true
     }
@@ -23,21 +21,23 @@ class MovieDetails extends Component {
     }
     //page load
     componentDidMount(){
+        console.log('history in movie dtails', this.props.history.location.state.movie);
+        
         const pathnameParts = this.props.history.location.pathname.split('details/')
         const movieId = pathnameParts[1]
         this.setState({movieId: movieId}) 
-        this.setState({userId: this.props.reduxState.user.id})
-        this.getNotes();
+        // this.setState({userId: this.props.reduxState.user.id})
+        // this.getNotes();
     }
     //only toggles from display to input
     editNotes=()=>{
         this.setState({noteTextarea: !this.state.noteTextarea})
     }
     //grabs prev written notes
-    getNotes=()=>{
-        // console.log(' checkign state', this.props.reduxState.user.id);
-        this.props.dispatch({type:'FETCH_NOTES', payload: this.props.reduxState.user.id})
-    }
+    // getNotes=()=>{
+    //     // console.log(' checkign state', this.props.reduxState.user.id);
+    //     this.props.dispatch({type:'FETCH_NOTES'})
+    // }
     //catches typed input and saves to state
     handleChange=(event)=>{
         console.log('in handlechange', event.target.value);
@@ -69,14 +69,15 @@ class MovieDetails extends Component {
     modal.style.display = "block";
     }
     render() {
+        let movie = this.props.history.location.state.movie
         return (
             <div className='movieDetails'>
-                {/* {JSON.stringify(this.props.reduxState.homepage)} */}
-                {this.props.reduxState.homepage.map(movie => 
-                        // eslint-disable-next-line
-                        (this.state.movieId == movie.id) ?
+                {/* {this.props.reduxState.homepage.map(
+                    movie => 
+                        // eslint-disable-next-line */}
+                        {(this.state.movieId == movie.id) ?
                         <>
-                        <div className="movieDetailCard"> 
+                        <div key={movie.id} className="movieDetailCard"> 
                             <img src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`} alt="Movie Backdrop"/>
                             <h3>{movie.title}</h3>
                             <p>
@@ -90,7 +91,7 @@ class MovieDetails extends Component {
                                     </> :
                                     (this.state.firstNote ?
                                         <>
-                                            <p>You haven't added a note!</p>
+                                            You haven't added a note!
                                             <button onClick={this.changeFirstNoteBoolean}>Add Note</button>
                                         </> :
                                         <>
@@ -105,7 +106,7 @@ class MovieDetails extends Component {
                                 <p>Select List: </p>
                                 <select onChange={this.selectList}>
                                     {this.props.reduxState.collections.map(listOption =>
-                                    <option value={listOption.id}>{listOption.list_title}</option>
+                                    <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                                     )}
                                 </select>
                                 <button onClick={this.saveToList}>Save</button>
@@ -115,9 +116,9 @@ class MovieDetails extends Component {
                             <button onClick={this.seeAllMovies}>Back To All Movies</button>
                         </div>
                         </>
-                        //empty JSX tags for else
-                        : <></>
-                )}
+                        //empty JSX tags for "else"
+                        : <></>}
+                {/* )} */}
             </div>
         )
     }

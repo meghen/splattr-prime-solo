@@ -12,14 +12,14 @@ class UserPage extends Component {
     // let span = document.getElementsByClassName("close")[0];
     modal.style.display = "none";
   }
-  componentDidMount(){
-    this.getMovies();
-  }
-  getMovies=()=>{
-    this.props.dispatch({type: 'FETCH_MOVIES'})   
-  }
+  // componentDidMount(){
+  //   this.getMovies();
+  // }
+  // getMovies=()=>{
+  //   this.props.dispatch({type: 'FETCH_MOVIES'})   
+  // }
   getInfo=(movie)=>{
-    //routes to movies details page, passing movie's id in as url router
+    //routes to movies details page, passing movie's id in as url router    
     this.props.history.push(`/details/${movie.id}`)
   }
   saveToList=()=>{
@@ -57,7 +57,7 @@ class UserPage extends Component {
                       <p>Select List: </p>
                       <select onChange={this.selectList}>
                         {this.props.reduxState.collections.map(listOption =>
-                          <option value={listOption.id}>{listOption.list_title}</option>
+                          <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                         )}
                       </select> 
                       <button onClick={this.saveToList}>Save</button>
