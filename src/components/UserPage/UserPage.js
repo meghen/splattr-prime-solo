@@ -58,6 +58,7 @@ class UserPage extends Component {
                       <span onClick={this.closeModal} className="close">&times;</span>
                       <p>Select List: </p>
                       <select onChange={this.selectList}>
+                      <option key="0" value="0">Select List</option>
                         {this.props.reduxState.collections.map(listOption =>
                           <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                         )}

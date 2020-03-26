@@ -7,7 +7,8 @@ class MovieDetails extends Component {
         movieId: 0,
         movieNotes: '',
         noteTextarea: false,
-        firstNote: true
+        firstNote: true,
+        list: 0
     }
     //allows us to only see the add note screen once. after that users can edit the note, but users are only allowed one note
     changeFirstNoteBoolean=()=>{
@@ -55,7 +56,9 @@ class MovieDetails extends Component {
     //for save btn in pop up modal. sends dispatch to save in db
     saveToList=()=>{
         /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
-        this.props.dispatch({type: 'SAVE_TO_LIST', payload: this.state.list})
+        console.log('why don you work ', this.state.list, this.state.movieId);
+        
+        this.props.dispatch({type: 'SAVE_TO_LIST', payload: {listId: this.state.list, movieId: this.state.movieId}})
         let modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
@@ -105,6 +108,7 @@ class MovieDetails extends Component {
                                 <span onClick={this.closeModal} className="close">&times;</span>
                                 <p>Select List: </p>
                                 <select onChange={this.selectList}>
+                                    <option key="0" value="0">Select List</option>
                                     {this.props.reduxState.collections.map(listOption =>
                                     <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                                     )}
