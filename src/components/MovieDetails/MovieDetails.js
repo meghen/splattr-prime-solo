@@ -48,9 +48,9 @@ class MovieDetails extends Component {
         this.setState({noteTextarea: !this.state.noteTextarea})
         this.props.dispatch({type: 'SET_MOVIES', payload: this.state})
     }
-    //routes back to main page
-    seeAllMovies=()=>{
-        this.props.history.push(`/#/home`)
+    //routes back to prev page
+    seeAllMovies=()=>{        
+        this.props.history.goBack()
     }
     //for save btn in pop up modal. sends dispatch to save in db
     saveToList=()=>{

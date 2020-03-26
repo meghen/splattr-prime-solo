@@ -20,8 +20,10 @@ class UserPage extends Component {
   // }
   getInfo=(movie)=>{
     //routes to movies details page, passing movie's id in as url router    
-    this.props.history.push(`/details/${movie.id}`)
-  }
+    this.props.history.push({
+      pathname: `/details/${movie.id}`,
+      state: {movie: movie}
+    })  }
   saveToList=()=>{
     this.props.dispatch({type: 'SET_LIST', payload: this.state})
     let modal = document.getElementById("myModal");
