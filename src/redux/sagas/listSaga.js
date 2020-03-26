@@ -42,12 +42,23 @@ function* createNewList(action) {
     console.log(error);
   }
 }
+function* getInList(action) {
+  try {
+    yield console.log('action.paylod os ', action.payload);
+    
+    const response = yield axios.get(`/collections/inner/${action.payload}`)    
+    yield put({type: 'SET_LIST_INNER', payload: response.data})
+  } catch (error) {
+    console.log(error);
+  }
+}
 function* listSaga() {
   yield takeEvery('SAVE_TO_LIST', saveToList);
   yield takeEvery('GET_LIST_TITLES', getListTitles)
   yield takeEvery('DELETE_LIST', deleteList)
   yield takeEvery('PUT_LIST_TITLE', updateListName)
   yield takeEvery('CREATE_NEW_LIST', createNewList)
+  yield takeEvery('GET_IN_LIST', getInList)
 }
 
 export default listSaga;

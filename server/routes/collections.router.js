@@ -2,11 +2,26 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-//inner gets the movies inside the lists
+// posts movies into a list
 router.post('/', (req,res)=>{        
     let queryString = `INSERT INTO "movie_list" ("list_id", "movie_id") VALUES ($1,$2)`;
     pool.query(queryString, [req.body.data.listId, req.body.data.movieId]).then((results) => {        
         res.sendStatus(201);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
+
+//inner gets the movies inside the lists
+router.get('/inner/:listId', (req,res)=>{
+    console.log('req.params is ', req.params);
+    
+    let queryString = `SELECT "movie_id" FROM "movie_list"
+    JOIN "user_lists" ON "movie_list"."list_id" = "user_lists"."id"
+    WHERE "list_id"=$1 GROUP BY "movie_id";`
+    pool.query(queryString, [req.params.listId]).then((results) => {
+        res.send(results.rows);
     }).catch((err) => {
         console.log(err);
         res.sendStatus(500);

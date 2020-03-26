@@ -6,6 +6,7 @@ import homepage from './homePageReducer';
 import gotNotes from './movieNotesReducer';
 import searchResults from './searchPageReducer';
 import collections from './movieCollectionsReducer';
+import listInner from './listInner';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   homepage, // will grab all horror/thriller movies for home directory after log in
   gotNotes,
   searchResults,
-  collections
+  collections,
+  listInner
 });
 
 export default rootReducer;

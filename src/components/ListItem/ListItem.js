@@ -23,9 +23,12 @@ class ListItem extends Component {
         modal.style.display = "none";
         this.props.dispatch({type: 'CREATE_NEW_LIST', payload: this.state.title})
     }
-    showListInner=()=>{
+    showListInner=(title)=>{
         console.log('in list inner!');
-        this.props.history.push('/in-lists') 
+        this.props.history.push({
+            pathname:'/in-lists',
+            state: title.id
+        }) 
     }
     toggleTitle=()=>{
         this.setState({titleEdit: !this.state.titleEdit})
@@ -47,7 +50,7 @@ class ListItem extends Component {
                             </> : 
                             <>
                                 <span className="listResults">
-                                    <button onClick={this.showListInner} className="listTitleButton">{this.props.listTitle.list_title}</button>
+                                    <button onClick={()=>this.showListInner(this.props.listTitle)} className="listTitleButton">{this.props.listTitle.list_title}</button>
                                     <button onClick={this.toggleTitle}>Edit</button>
                                     <button onClick={()=>this.deleteList(this.props.listTitle)}>Delete</button>
                                 </span>
