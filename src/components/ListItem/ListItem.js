@@ -5,7 +5,10 @@ import './ListItem.css';
 class ListItem extends Component {
     state = {
         titleEdit: false,
-        title: ''
+        dataToSend: {
+        title: '',
+        movieId: 0
+        }
     }
     closeModal=()=>{
         let modal = document.getElementById("myModal");
@@ -29,7 +32,7 @@ class ListItem extends Component {
         this.setState({titleEdit: !this.state.titleEdit})
     }
     updateTitle=()=>{
-        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: this.state.title})
+        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: this.state.dataToSend})
         this.setState({titleEdit: !this.state.titleEdit})
     }
     render() {

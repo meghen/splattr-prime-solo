@@ -25,16 +25,13 @@ router.post('/outer', (req,res)=>{
     })
 })
 //shows all lists created by user
-router.get('/outer', (req,res)=>{
-    console.log('in List OUTER with req ', req.session.passport.user);
-    
+router.get('/outer', (req,res)=>{    
     let queryString = `SELECT "list_title","user_lists"."id" FROM "user_lists"
     LEFT JOIN "movie_list" ON "movie_list"."list_id" = "user_lists"."id"
     JOIN "user" ON "user"."id" = "user_lists"."user_id"
     WHERE "user"."id" = $1
     GROUP BY "list_title", "user_lists"."id";`
     pool.query(queryString, [req.session.passport.user]).then((results) => {
-        console.log('what is results.rows here? ', results.rows);
         res.send(results.rows);
     }).catch((err) => {
         console.log(err);
@@ -52,13 +49,15 @@ router.delete('/outer/:listId', (req,res)=>{
     })
 })
 //updates the list title
-router.put('/outer/:listId', (req,res)=>{
-    let queryString = `UPDATE "user_lists" SET "list_title"=$1 WHERE "id" = $2;`;
-    pool.query(queryString, [req.body,req.params.listId]).then((results) => {        
-        res.sendStatus(200);
-    }).catch((err) => {
-        console.log(err);
-        res.sendStatus(500);
-    })
+router.put('/outer/', (req,res)=>{
+    console.log(req.body.data);
+    
+    // let queryString = `UPDATE "user_lists" SET "list_title"=$1 WHERE "id" = $2 AND "user_id" = $3;`;
+    // pool.query(queryString, [req.body.title,req.body.movieId,req.session.passport.user]).then((results) => {        
+    //     res.sendStatus(200);
+    // }).catch((err) => {
+    //     console.log(err);
+    //     res.sendStatus(500);
+    // })
 })
 module.exports = router;

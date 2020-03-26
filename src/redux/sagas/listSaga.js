@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* setList(action) {
+function* saveToList(action) {
   try {
   yield axios.post('/collections', {data: action.payload})
   // yield put({type: 'GET_LIST_TITLES'})
@@ -27,7 +27,7 @@ function* deleteList(action) {
 }
 function* updateListName(action) {
   try {
-  yield axios.put(`/collections/${action.payload}`)
+  yield axios.put(`/collections/outer`, {data: action.payload})
   yield put({type: 'GET_LIST_TITLES'})  
   } catch (error) {
     console.log(error);
@@ -42,7 +42,7 @@ function* createNewList(action) {
   }
 }
 function* listSaga() {
-  yield takeEvery('SAVE_TO_LIST', setList);
+  yield takeEvery('SAVE_TO_LIST', saveToList);
   yield takeEvery('GET_LIST_TITLES', getListTitles)
   yield takeEvery('DELETE_LIST', deleteList)
   yield takeEvery('PUT_LIST_TITLE', updateListName)
