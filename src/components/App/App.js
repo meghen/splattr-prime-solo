@@ -18,8 +18,8 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import SearchMovies from '../SearchMovies/SearchMovies';
 import Lists from '../Lists/Lists';
-import AddMovie from '../AddMovie/AddMovie'
 import MovieDetails from '../MovieDetails/MovieDetails';
+import WhatsInTheList from '../WhatsInTheList/WhatsInTheList';
 
 import './App.css';
 
@@ -74,8 +74,8 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/add-movie"
-              component={AddMovie}
+              path="/in-lists"
+              component={WhatsInTheList}
             />
             <ProtectedRoute
               path="/details"

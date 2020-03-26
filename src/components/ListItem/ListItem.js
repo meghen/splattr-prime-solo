@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './ListItem.css';
+import {withRouter} from 'react-router-dom';
 
 class ListItem extends Component {
     state = {
@@ -23,7 +24,8 @@ class ListItem extends Component {
         this.props.dispatch({type: 'CREATE_NEW_LIST', payload: this.state.title})
     }
     showListInner=()=>{
-        console.log('in list inner!'); 
+        console.log('in list inner!');
+        this.props.history.push('/in-lists') 
     }
     toggleTitle=()=>{
         this.setState({titleEdit: !this.state.titleEdit})
@@ -65,4 +67,4 @@ class ListItem extends Component {
 const mapStateToProps = reduxState => ({
 reduxState
 });
-export default connect(mapStateToProps)(ListItem);
+export default withRouter(connect(mapStateToProps)(ListItem));
