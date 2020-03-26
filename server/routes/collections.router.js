@@ -12,9 +12,11 @@ router.post('/', (req,res)=>{
         res.sendStatus(500);
     })
 })
-//outer gets names of lists created per user
+
+///outer gets names of lists created per user
+//creates a new list
 router.post('/outer', (req,res)=>{      
-    let queryString = `INSERT INTO "user_lists" ("list_title", "user_id") VALUES $1, $2;`;
+    let queryString = `INSERT INTO "user_lists" ("list_title", "user_id") VALUES ($1, $2);`;
     pool.query(queryString, [req.body.newListTitle, req.session.passport.user]).then((results) => {        
         res.sendStatus(201);
     }).catch((err) => {
@@ -22,6 +24,7 @@ router.post('/outer', (req,res)=>{
         res.sendStatus(500);
     })
 })
+//shows all lists created by user
 router.get('/outer', (req,res)=>{
     console.log('in List OUTER with req ', req.session.passport.user);
     
@@ -38,6 +41,7 @@ router.get('/outer', (req,res)=>{
         res.sendStatus(500);
     })
 })
+//removes list title and movies in list
 router.delete('/outer/:listId', (req,res)=>{
     let queryString = `DELETE FROM "user_lists" WHERE "id" = $1 AND "user_lists"."user_id" = $2;`;
     pool.query(queryString, [req.params.listId, req.session.passport.user]).then((results) => {        
@@ -47,8 +51,9 @@ router.delete('/outer/:listId', (req,res)=>{
         res.sendStatus(500);
     })
 })
+//updates the list title
 router.put('/outer/:listId', (req,res)=>{
-    let queryString = `UPDATE "user_lists" SET "list_title"='$1' WHERE "id" = $2;`;
+    let queryString = `UPDATE "user_lists" SET "list_title"=$1 WHERE "id" = $2;`;
     pool.query(queryString, [req.body,req.params.listId]).then((results) => {        
         res.sendStatus(200);
     }).catch((err) => {
