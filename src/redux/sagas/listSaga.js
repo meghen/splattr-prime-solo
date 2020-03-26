@@ -20,13 +20,15 @@ function* getListTitles() {
 function* deleteList(action) {
   try {    
     yield axios.delete(`/collections/outer/${action.payload}`) 
+    yield put({type: 'GET_LIST_TITLES'})
   } catch (error) {
     console.log(error);
   } 
 }
 function* updateListName(action) {
   try {
-  yield axios.put(`/collections/${action.payload}`)  
+  yield axios.put(`/collections/${action.payload}`)
+  yield put({type: 'GET_LIST_TITLES'})  
   } catch (error) {
     console.log(error);
   }
@@ -34,12 +36,13 @@ function* updateListName(action) {
 function* createNewList(action) {  
   try {
   yield axios.post('/collections/outer', {newListTitle: action.payload})
+  yield put({type: 'GET_LIST_TITLES'})
   } catch (error) {
     console.log(error);
   }
 }
 function* listSaga() {
-  yield takeEvery('SET_LIST', setList);
+  yield takeEvery('SAVE_TO_LIST', setList);
   yield takeEvery('GET_LIST_TITLES', getListTitles)
   yield takeEvery('DELETE_LIST', deleteList)
   yield takeEvery('PUT_LIST_TITLE', updateListName)

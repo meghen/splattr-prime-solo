@@ -25,7 +25,7 @@ class SearchMovies extends Component {
       this.setState({searchQuery: event.target.value})
     }
     saveToList=()=>{
-      this.props.dispatch({type: 'SET_LIST', payload: this.state})
+      this.props.dispatch({type: 'SAVE_TO_LIST', payload: this.state})
       let modal = document.getElementById("myModal");
       modal.style.display = "none";
     }

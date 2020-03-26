@@ -55,7 +55,7 @@ class MovieDetails extends Component {
     //for save btn in pop up modal. sends dispatch to save in db
     saveToList=()=>{
         /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
-        this.props.dispatch({type: 'SET_LIST', payload: this.state.list})
+        this.props.dispatch({type: 'SAVE_TO_LIST', payload: this.state.list})
         let modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
