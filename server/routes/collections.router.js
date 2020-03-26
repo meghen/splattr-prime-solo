@@ -49,15 +49,13 @@ router.delete('/outer/:listId', (req,res)=>{
     })
 })
 //updates the list title
-router.put('/outer/', (req,res)=>{
-    console.log(req.body.data);
-    
-    // let queryString = `UPDATE "user_lists" SET "list_title"=$1 WHERE "id" = $2 AND "user_id" = $3;`;
-    // pool.query(queryString, [req.body.title,req.body.movieId,req.session.passport.user]).then((results) => {        
-    //     res.sendStatus(200);
-    // }).catch((err) => {
-    //     console.log(err);
-    //     res.sendStatus(500);
-    // })
+router.put('/outer/', (req,res)=>{    
+    let queryString = `UPDATE "user_lists" SET "list_title"=$1 WHERE "id" = $2 AND "user_id" = $3;`;
+    pool.query(queryString, [req.body.data.title,req.body.data.movieId,req.session.passport.user]).then((results) => {        
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    })
 })
 module.exports = router;

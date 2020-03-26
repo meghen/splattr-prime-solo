@@ -5,10 +5,7 @@ import './ListItem.css';
 class ListItem extends Component {
     state = {
         titleEdit: false,
-        dataToSend: {
         title: '',
-        movieId: 0
-        }
     }
     closeModal=()=>{
         let modal = document.getElementById("myModal");
@@ -31,8 +28,8 @@ class ListItem extends Component {
     toggleTitle=()=>{
         this.setState({titleEdit: !this.state.titleEdit})
     }
-    updateTitle=()=>{
-        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: this.state.dataToSend})
+    updateTitle=(title)=>{
+        this.props.dispatch({type: 'PUT_LIST_TITLE', payload: {title: this.state.title, movieId: title.id}})
         this.setState({titleEdit: !this.state.titleEdit})
     }
     render() {
@@ -42,7 +39,7 @@ class ListItem extends Component {
                             <>
                                 <span className="listResults">
                                     <input onChange={this.handleChange}></input>
-                                    <button onClick={this.updateTitle}>Save</button>
+                                    <button onClick={()=>this.updateTitle(this.props.listTitle)}>Save</button>
                                     <button onClick={()=>this.deleteList(this.props.listTitle)}>Delete List</button>
                                 </span>
                             </> : 

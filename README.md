@@ -59,7 +59,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 ## Authors
 
-* **Megan Henry** - *Initial work* - [meghen](https://github.com/meghen)
+* **Megan Henry** - [meghen](https://github.com/meghen)
 
 ## Acknowledgments
 

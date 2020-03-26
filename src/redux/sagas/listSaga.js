@@ -27,6 +27,7 @@ function* deleteList(action) {
 }
 function* updateListName(action) {
   try {
+    yield console.log('in update saga checking action.payload', action.payload.title, action.payload.movieId);
   yield axios.put(`/collections/outer`, {data: action.payload})
   yield put({type: 'GET_LIST_TITLES'})  
   } catch (error) {
