@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../ListItem/ListItem.css';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class WhatsInTheListChild extends Component {
     getInfo=(movie)=>{
@@ -8,7 +9,11 @@ class WhatsInTheListChild extends Component {
         this.props.history.push({
           pathname: `/details/${movie.id}`,
           state: {movie: movie}
-        })  }
+        })  
+    }
+    deleteMovie=(movie)=>{
+        this.props.dispatch({type: 'DELETE_MOVIE', payload: movie.movie_id})        
+    }
     render() {
         return (
                 <div className="listDisplay">
@@ -20,4 +25,7 @@ class WhatsInTheListChild extends Component {
         )
     }
 }
-export default withRouter(WhatsInTheListChild);
+const mapStateToProps = reduxState => ({
+reduxState
+});
+export default withRouter(connect(mapStateToProps)(WhatsInTheListChild));

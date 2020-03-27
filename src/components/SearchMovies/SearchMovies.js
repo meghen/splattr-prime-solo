@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../UserPage/UserPage.css'
+import SearchMoviesChild from '../SearchMoviesChild/SearchMoviesChild';
 
 class SearchMovies extends Component {
     state = {
@@ -25,6 +26,8 @@ class SearchMovies extends Component {
       this.setState({searchQuery: event.target.value})
     }
     saveToList=(movie)=>{
+      console.log('movie.movieInfo ',movie.movieInfo);
+      
       this.props.dispatch({
         type: 'SAVE_TO_LIST', 
         payload: {
@@ -61,6 +64,7 @@ class SearchMovies extends Component {
                 <input placeholder="Movie Name" onChange={this.handleChange}></input>
                 <button onClick={this.searchMovies}>Search</button>
                 {this.props.reduxState.searchResults.map(movie => 
+                // <SearchMoviesChild key={movie.id} movie={movie}/>
                   <div className="moviesList" key={movie.id}>
                     <div className="moviesListInner"><img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} alt="Movie Poster"/></div>
                     <div className="moviesListInner">
@@ -84,7 +88,8 @@ class SearchMovies extends Component {
                       <button onClick={()=>this.saveToList(movie)}>Save</button>
                     </div>
                   </div>
-                  </div>)}
+                  </div>
+                  )}
                   
             </div>
         )

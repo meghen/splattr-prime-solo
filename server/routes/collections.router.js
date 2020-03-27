@@ -29,7 +29,15 @@ router.get('/inner/:listId', (req,res)=>{
         res.sendStatus(500);
     })
 })
-
+router.delete('/inner/:listId', (req,res)=>{
+    let queryString = `DELETE FROM "movie_list" WHERE "movie_id"=$1;`;
+    pool.query(queryString, [req.params.listId]).then((results) => {        
+        res.sendStatus(200);
+    }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+    })
+})
 ///outer gets names of lists created per user
 //creates a new list
 router.post('/outer', (req,res)=>{      

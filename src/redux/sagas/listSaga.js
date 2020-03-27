@@ -52,6 +52,16 @@ function* getInList(action) {
     console.log(error);
   }
 }
+function* deleteMovie(action){
+  // console.log('action.oaylaod', action.payload);
+  
+  try {    
+    yield axios.delete(`/collections/inner/${action.payload}`) 
+    yield put({type: 'GET_IN_LIST'})
+  } catch (error) {
+    console.log(error);
+  } 
+}
 function* listSaga() {
   yield takeEvery('SAVE_TO_LIST', saveToList);
   yield takeEvery('GET_LIST_TITLES', getListTitles)
@@ -59,6 +69,7 @@ function* listSaga() {
   yield takeEvery('PUT_LIST_TITLE', updateListName)
   yield takeEvery('CREATE_NEW_LIST', createNewList)
   yield takeEvery('GET_IN_LIST', getInList)
+  yield takeEvery('DELETE_MOVIE', deleteMovie)
 }
 
 export default listSaga;

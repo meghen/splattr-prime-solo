@@ -4,10 +4,11 @@ import WhatsInTheListChild from '../WhatsInTheListChild/WhatsInTheListChild';
 
 class WhatsInTheList extends Component {
     state={
-        listTitle: ''
+        listTitle: '',
+        listId: {}
     }
     componentDidMount() {
-        console.log('this.props.history.location.state ',this.props.history.location.state.name);
+        console.log('this.props.history.location.state ',this.props.history.location.state.id);
         this.setState({listTitle: this.props.history.location.state.name})
         this.props.dispatch({type: 'GET_IN_LIST', payload: this.props.history.location.state.id})
     }

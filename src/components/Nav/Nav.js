@@ -28,7 +28,7 @@ const Nav = (props) => (
           <Link className="nav-link" to="/info">
           <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1308/1308359.svg" alt="Icon made by Wanicon at www.flaticon.com"/>
             <br></br>
-            Settings
+            Info
           </Link>
           <Link className="nav-link" to="/lists">
             <img className="nav-icons" src="https://image.flaticon.com/icons/svg/1750/1750050.svg" alt="Icon made by Wanicon at www.flaticon.com"/>

@@ -17,13 +17,6 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
-CREATE TABLE "user-review" (
-"id" SERIAL PRIMARY KEY,
-"user_id" INT REFERENCES "user",
-"movie_id" INT,
-"notes" TEXT,
-"rating" INT
-);
 --where all the names of lists live. Users create lists and those are save here
 CREATE TABLE "user_lists" (
 "id" SERIAL PRIMARY KEY,
