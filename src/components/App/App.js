@@ -27,7 +27,6 @@ class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
     this.props.dispatch({type: 'GET_LIST_TITLES'})
-    this.props.dispatch({type:'FETCH_NOTES'})
     this.props.dispatch({type: 'FETCH_MOVIES'})   
   }
 

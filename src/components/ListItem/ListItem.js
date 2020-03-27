@@ -27,7 +27,10 @@ class ListItem extends Component {
         console.log('in list inner!');
         this.props.history.push({
             pathname:'/in-lists',
-            state: title.id
+            state: {
+                id: title.id, 
+                name: title.list_title
+            }
         }) 
     }
     toggleTitle=()=>{

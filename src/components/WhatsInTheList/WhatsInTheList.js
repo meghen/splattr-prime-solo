@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import WhatsInTheListChild from '../WhatsInTheListChild/WhatsInTheListChild';
 
 class WhatsInTheList extends Component {
+    state={
+        listTitle: ''
+    }
     componentDidMount() {
-        console.log('this.props.history.state ',this.props.history.location.state);
-        
-        this.props.dispatch({type: 'GET_IN_LIST', payload: this.props.history.location.state})
+        console.log('this.props.history.location.state ',this.props.history.location.state.name);
+        this.setState({listTitle: this.props.history.location.state.name})
+        this.props.dispatch({type: 'GET_IN_LIST', payload: this.props.history.location.state.id})
     }
     render() {
         return (
             <div className=''>
-                {JSON.stringify(this.props.reduxState.listInner)}
+                <h2>{this.state.listTitle}</h2>
+                {this.props.reduxState.listInner.map(moviesInList=>
+                    <WhatsInTheListChild key={moviesInList.id} moviesInList={moviesInList}/>
+                )}
             </div>
         )
     }

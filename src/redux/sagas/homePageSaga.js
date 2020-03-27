@@ -15,26 +15,6 @@ function* getMovies(action) {
     console.log('Error with user logout:', error);
   }
 }
-function* postNotes(action) {
-  try {
-    yield axios.post('/notes', {notes: action.payload});
-    yield put({type: 'FETCH_NOTES'})
-  } catch (error) {
-    console.log('Error with user logout:', error);
-  }
-}
-function* fetchNotes(action) {
-  try {
-    yield console.log('in fetchNotes', action.payload);
-    
-    const response = yield axios.get(`/notes/${action.payload}`); 
-    yield console.log('after get we have ', response.data);
-       
-    yield put({ type: 'GET_NOTES', payload: response.data }); 
-  } catch (error) {
-    console.log('Error with user logout:', error);
-  }
-}
 function* findMovies(action) {
   try {    
     const response = yield axios.get(`/api/movies/search/${action.payload}`);    
@@ -45,8 +25,8 @@ function* findMovies(action) {
 }
 function* homePageSaga() {
   yield takeEvery('FETCH_MOVIES', getMovies);
-  yield takeEvery('SET_MOVIES', postNotes);
-  yield takeEvery('FETCH_NOTES', fetchNotes);
+  // yield takeEvery('SET_MOVIES', postNotes);
+  // yield takeEvery('FETCH_NOTES', fetchNotes);
   yield takeEvery('SEARCH_MOVIES', findMovies);
 }
 

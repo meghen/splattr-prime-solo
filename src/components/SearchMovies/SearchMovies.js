@@ -24,8 +24,21 @@ class SearchMovies extends Component {
     handleChange=(event)=>{
       this.setState({searchQuery: event.target.value})
     }
-    saveToList=()=>{
-      this.props.dispatch({type: 'SAVE_TO_LIST', payload: this.state})
+    saveToList=(movie)=>{
+      this.props.dispatch({
+        type: 'SAVE_TO_LIST', 
+        payload: {
+          list: this.state,
+          movieInfo: {
+            id: movie.id,
+            title: movie.title,
+            poster_path: movie.poster_path,
+            backdrop_path: movie.backdrop_path,
+            overview: movie.overview,
+            release_date: movie.release_date
+          }
+        }
+      })
       let modal = document.getElementById("myModal");
       modal.style.display = "none";
     }
@@ -58,8 +71,7 @@ class SearchMovies extends Component {
                       <button onClick={()=>this.showSelectList(movie)}>Add To List</button>
                       <button onClick={()=>this.getInfo(movie)}>More</button>
                       </div>
-                  </div>)}
-                  <div id="myModal" className="modal">
+                      <div id="myModal" className="modal">
                     <div className="modal-content">
                       <span onClick={this.closeModal} className="close">&times;</span>
                       <p>Select List: </p>
@@ -69,12 +81,11 @@ class SearchMovies extends Component {
                           <option key={listOption.id} value={listOption.id}>{listOption.list_title}</option>
                         )}
                       </select>
-                      <button onClick={this.saveToList}>Save</button>
+                      <button onClick={()=>this.saveToList(movie)}>Save</button>
                     </div>
                   </div>
-                  <br/>
-                  <button className="pageBtn">Previous Page</button>
-                  <button className="pageBtn">Next Page</button>
+                  </div>)}
+                  
             </div>
         )
     }

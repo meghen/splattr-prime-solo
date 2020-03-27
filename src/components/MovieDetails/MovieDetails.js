@@ -5,14 +5,7 @@ import './MovieDetails.css';
 class MovieDetails extends Component {
     state = {
         movieId: 0,
-        movieNotes: '',
-        noteTextarea: false,
-        firstNote: true,
         list: 0
-    }
-    //allows us to only see the add note screen once. after that users can edit the note, but users are only allowed one note
-    changeFirstNoteBoolean=()=>{
-        this.setState({firstNote: !this.state.firstNote})
     }
     //closes pop up box
     closeModal=()=>{
@@ -30,35 +23,26 @@ class MovieDetails extends Component {
         // this.setState({userId: this.props.reduxState.user.id})
         // this.getNotes();
     }
-    //only toggles from display to input
-    editNotes=()=>{
-        this.setState({noteTextarea: !this.state.noteTextarea})
-    }
-    //grabs prev written notes
-    // getNotes=()=>{
-    //     // console.log(' checkign state', this.props.reduxState.user.id);
-    //     this.props.dispatch({type:'FETCH_NOTES'})
-    // }
-    //catches typed input and saves to state
-    handleChange=(event)=>{
-        console.log('in handlechange', event.target.value);
-        this.setState({movieNotes: event.target.value})
-    }
-    //toggles from input to save/display, also sends dispatch to save in db
-    saveNotes=()=>{
-        this.setState({noteTextarea: !this.state.noteTextarea})
-        this.props.dispatch({type: 'SET_MOVIES', payload: this.state})
-    }
     //routes back to prev page
     seeAllMovies=()=>{        
         this.props.history.goBack()
     }
     //for save btn in pop up modal. sends dispatch to save in db
-    saveToList=()=>{
-        /// - NEED TO SET UP DISPATCH HERE CAPTURING THIS.STATE.LIST
-        console.log('why don you work ', this.state.list, this.state.movieId);
-        
-        this.props.dispatch({type: 'SAVE_TO_LIST', payload: {listId: this.state.list, movieId: this.state.movieId}})
+    saveToList=(movie)=>{
+        this.props.dispatch({
+            type: 'SAVE_TO_LIST', 
+            payload: {
+                list: this.state,
+                movieInfo: {
+                  id: movie.id,
+                  title: movie.title,
+                  poster_path: movie.poster_path,
+                  backdrop_path: movie.backdrop_path,
+                  overview: movie.overview,
+                  release_date: movie.release_date
+                }
+            }
+        })
         let modal = document.getElementById("myModal");
         modal.style.display = "none";
     }
@@ -75,9 +59,6 @@ class MovieDetails extends Component {
         let movie = this.props.history.location.state.movie
         return (
             <div className='movieDetails'>
-                {/* {this.props.reduxState.homepage.map(
-                    movie => 
-                        // eslint-disable-next-line */}
                         {(this.state.movieId == movie.id) ?
                         <>
                         <div key={movie.id} className="movieDetailCard"> 
@@ -86,22 +67,6 @@ class MovieDetails extends Component {
                             <p>
                                 <b>Release Date: </b><br/>{movie.release_date} <br/><br/>
                                 <b>Summary: </b><br/>{movie.overview} <br/><br/>
-                                <b>Notes: </b><br/>
-                                {this.state.noteTextarea ?
-                                    <>
-                                        {this.props.reduxState.gotNotes}
-                                        <button onClick={this.editNotes}>Edit</button>
-                                    </> :
-                                    (this.state.firstNote ?
-                                        <>
-                                            You haven't added a note!
-                                            <button onClick={this.changeFirstNoteBoolean}>Add Note</button>
-                                        </> :
-                                        <>
-                                            <textarea onChange={this.handleChange}>{this.props.reduxState.gotNotes}</textarea>
-                                            <button onClick={this.saveNotes}>Save</button>                                            
-                                        </>)
-                                }
                             </p>
                             <div id="myModal" className="modal">
                                 <div className="modal-content">
@@ -122,7 +87,6 @@ class MovieDetails extends Component {
                         </>
                         //empty JSX tags for "else"
                         : <></>}
-                {/* )} */}
             </div>
         )
     }

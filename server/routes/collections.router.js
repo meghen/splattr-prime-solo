@@ -3,9 +3,11 @@ const router = express.Router();
 const pool = require('../modules/pool.js');
 
 // posts movies into a list
-router.post('/', (req,res)=>{        
-    let queryString = `INSERT INTO "movie_list" ("list_id", "movie_id") VALUES ($1,$2)`;
-    pool.query(queryString, [req.body.data.listId, req.body.data.movieId]).then((results) => {        
+router.post('/', (req,res)=>{     
+    console.log('hey you got a big req.body', req.body.data);
+    let input = req.body.data
+    let queryString = `INSERT INTO "movie_list" ("list_id", "movie_id","title", "poster_path", "backdrop_path", "overview", "release_date") VALUES ($1,$2,$3,$4,$5,$6,$7)`;
+    pool.query(queryString, [input.list.list, input.movieInfo.id, input.movieInfo.title, input.movieInfo.poster_path, input.movieInfo.backdrop_path, input.movieInfo.overview, input.movieInfo.release_date]).then((results) => {        
         res.sendStatus(201);
     }).catch((err) => {
         console.log(err);
@@ -17,9 +19,9 @@ router.post('/', (req,res)=>{
 router.get('/inner/:listId', (req,res)=>{
     console.log('req.params is ', req.params);
     
-    let queryString = `SELECT "movie_id" FROM "movie_list"
+    let queryString = `SELECT * FROM "movie_list"
     JOIN "user_lists" ON "movie_list"."list_id" = "user_lists"."id"
-    WHERE "list_id"=$1 GROUP BY "movie_id";`
+    WHERE "list_id"=$1;`
     pool.query(queryString, [req.params.listId]).then((results) => {
         res.send(results.rows);
     }).catch((err) => {

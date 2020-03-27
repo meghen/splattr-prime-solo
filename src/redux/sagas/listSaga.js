@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function* saveToList(action) {
   try {
+    // console.log('oofda now thats a payload der ', action.payload)
   yield axios.post('/collections', {data: action.payload})
-  // yield put({type: 'GET_LIST_TITLES'})
   } catch (error) {
     console.log(error);
   }
