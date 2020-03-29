@@ -4,7 +4,8 @@ import ListItem from '../ListItem/ListItem';
 
 class Lists extends Component {
     state={
-        title: ''
+        title: '',
+        isLoaded: false
     }
     closeModal=()=>{
         let modal = document.getElementById("myModal");

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import WhatsInTheListChild from '../WhatsInTheListChild/WhatsInTheListChild';
-
+import './WhatsInTheList.css'
 class WhatsInTheList extends Component {
     state={
         listTitle: '',
