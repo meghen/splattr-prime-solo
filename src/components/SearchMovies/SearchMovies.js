@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../UserPage/UserPage.css'
-import SearchMoviesChild from '../SearchMoviesChild/SearchMoviesChild';
+// import SearchMoviesChild from '../SearchMoviesChild/SearchMoviesChild';
 
 class SearchMovies extends Component {
     state = {
